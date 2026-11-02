@@ -1,0 +1,23 @@
+name: Bug report · گزارش مشکل
+description: Something does not work as expected. · چیزی درست کار نمی‌کند.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened? · چه اتفاقی افتاد؟
+      description: Steps to reproduce, what you expected and what you saw. · مراحل تکرار مشکل، انتظار شما و نتیجه‌ای که دیدید.
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions · نسخه‌ها
+      placeholder: Peyvanda 0.1.0, WordPress 6.8, PHP 8.2, WooCommerce 9.x
+    validations:
+      required: true
+  - type: input
+    id: theme
+    attributes:
+      label: Theme and page builder · قالب و صفحه‌ساز
+      placeholder: Astra + Gutenberg

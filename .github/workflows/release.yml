@@ -1,0 +1,29 @@
+name: Release zip
+
+# Builds peyvanda.zip (without dev files) and attaches it to every published release.
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check version matches the tag
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          grep -q "Version:           ${TAG}$" peyvanda.php || { echo "peyvanda.php Version does not match tag ${TAG}"; exit 1; }
+          grep -q "^Stable tag: ${TAG}$" readme.txt || { echo "readme.txt Stable tag does not match tag ${TAG}"; exit 1; }
+      - name: Build zip
+        run: |
+          mkdir -p build/peyvanda
+          rsync -a --exclude-from=.distignore --exclude=build ./ build/peyvanda/
+          cd build && zip -qr peyvanda.zip peyvanda
+      - name: Upload to release
+        run: gh release upload "$GITHUB_REF_NAME" build/peyvanda.zip --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}
