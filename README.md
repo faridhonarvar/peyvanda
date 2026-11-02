@@ -1,14 +1,16 @@
 <div align="center">
 
-# Peyvanda · پیوندا
+![Peyvanda: inline related posts and products for WordPress](.wordpress-org/banner-1544x500.png)
 
-**Related posts & WooCommerce products — right inside your content.**
+**Inline related posts, related products and "Read more" boxes, right inside your content.**
 
 Lightweight, theme-safe and RTL-ready WordPress plugin.
 
 [**⬇ Download the latest version**](https://github.com/faridhonarvar/peyvanda/releases/latest/download/peyvanda.zip)
 
 [English](#english) · [فارسی](#فارسی)
+
+![Peyvanda in action](.github/media/demo.gif)
 
 </div>
 
@@ -17,6 +19,16 @@ Lightweight, theme-safe and RTL-ready WordPress plugin.
 ## English
 
 Peyvanda shows "Read more" and "Related products" boxes **in the middle of your posts** (after paragraph N), where readers actually see them, instead of only at the end of the page.
+
+### Screenshots
+
+| Thumbnail list | Horizontal cards | Persian (RTL) |
+|---|---|---|
+| ![](.wordpress-org/screenshot-1.png) | ![](.wordpress-org/screenshot-2.png) | ![](.wordpress-org/screenshot-3.png) |
+
+| Box editor | Manual picks in the post editor |
+|---|---|
+| ![](.wordpress-org/screenshot-6.png) | ![](.wordpress-org/screenshot-7.png) |
 
 ### Features
 

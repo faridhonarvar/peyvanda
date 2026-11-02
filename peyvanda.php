@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name:       Peyvanda
+ * Plugin Name:       Peyvanda – Inline Related Posts, Products & Read More Boxes
  * Plugin URI:        https://github.com/faridhonarvar/peyvanda
  * Description:       Show beautiful, lightweight related posts and products boxes inside your content — after paragraph N, with a shortcode or a block.
- * Version:           0.1.0
+ * Version:           0.1.1
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            Farid Honarvar
@@ -18,7 +18,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PEYVANDA_VERSION', '0.1.0' );
+define( 'PEYVANDA_VERSION', '0.1.1' );
 define( 'PEYVANDA_FILE', __FILE__ );
 define( 'PEYVANDA_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PEYVANDA_URL', plugin_dir_url( __FILE__ ) );

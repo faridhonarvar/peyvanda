@@ -6,3 +6,4 @@
 .pvd-editor__designs { display: flex; flex-wrap: wrap; gap: 8px; }
 .pvd-editor__design { display: flex; align-items: center; gap: 6px; padding: 8px 12px; border: 1px solid #dcdcde; border-radius: 4px; cursor: pointer; }
 .pvd-editor__design:has(input:checked) { border-color: #3858e9; box-shadow: 0 0 0 1px #3858e9; }
+.pvd-editor .form-table td fieldset label.pvd-editor__check { display: block; }

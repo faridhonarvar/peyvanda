@@ -2,3 +2,4 @@
 .pvd-settings__card { display: flex; align-items: center; justify-content: space-between; gap: 16px; max-width: 780px; margin: 16px 0; padding: 12px 16px; background: #fff; border: 1px solid #c3c4c7; border-inline-start: 4px solid #3858e9; border-radius: 4px; }
 .pvd-settings__card p { margin: 0; }
 .pvd-settings__card-dismiss { flex: none; }
+.pvd-settings .form-table td fieldset label.pvd-settings__check { display: block; }
