@@ -78,7 +78,7 @@ final class RestController {
 						'required'          => true,
 						'sanitize_callback' => 'sanitize_key',
 					),
-					'exclude'   => array(
+					'skip'      => array(
 						'type'    => 'array',
 						'items'   => array( 'type' => 'integer' ),
 						'default' => array(),
@@ -122,14 +122,14 @@ final class RestController {
 	 * @return \WP_REST_Response
 	 */
 	public function search( \WP_REST_Request $request ) {
-		$exclude = array_map( 'absint', (array) $request->get_param( 'exclude' ) );
-		$query   = new \WP_Query(
+		// IDs already picked (or the post itself); filtered in PHP instead of a NOT IN clause.
+		$skip  = array_slice( array_filter( array_map( 'absint', (array) $request->get_param( 'skip' ) ) ), 0, 50 );
+		$query = new \WP_Query(
 			array(
 				'post_type'              => (string) $request->get_param( 'post_type' ),
 				'post_status'            => 'publish',
 				's'                      => (string) $request->get_param( 'search' ),
-				'posts_per_page'         => 10,
-				'post__not_in'           => array_filter( $exclude ),
+				'posts_per_page'         => 10 + count( $skip ),
 				'no_found_rows'          => true,
 				'ignore_sticky_posts'    => true,
 				'update_post_meta_cache' => false,
@@ -139,6 +139,12 @@ final class RestController {
 
 		$results = array();
 		foreach ( $query->posts as $post ) {
+			if ( in_array( (int) $post->ID, $skip, true ) ) {
+				continue;
+			}
+			if ( count( $results ) >= 10 ) {
+				break;
+			}
 			$results[] = array(
 				'id'    => (int) $post->ID,
 				'title' => html_entity_decode( get_the_title( $post ), ENT_QUOTES, get_bloginfo( 'charset' ) ),

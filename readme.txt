@@ -4,7 +4,7 @@ Tags: inline related posts, related posts, related products, read more, internal
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -106,6 +106,10 @@ Peyvanda works through the standard WordPress content filter, so it works with t
 8. Site-wide settings.
 
 == Changelog ==
+
+= 0.1.2 =
+* Performance: related-item and search queries no longer use NOT IN clauses.
+* Stylesheets are formatted for readability.
 
 = 0.1.1 =
 * New plugin name: "Peyvanda – Inline Related Posts, Products & Read More Boxes".

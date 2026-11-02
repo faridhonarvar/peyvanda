@@ -140,9 +140,8 @@ final class RelatedCache {
 			$found = self::query(
 				$target,
 				array(
-					'post__not_in' => array_merge( array( $post->ID ), $ids ),
 					// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Runs on save, not on page view.
-					'tax_query'    => array(
+					'tax_query' => array(
 						array(
 							'taxonomy' => $target_taxonomy,
 							'field'    => 'term_id',
@@ -150,7 +149,8 @@ final class RelatedCache {
 						),
 					),
 				),
-				self::MAX_IDS - count( $ids )
+				self::MAX_IDS - count( $ids ),
+				array_merge( array( $post->ID ), $ids )
 			);
 
 			$ids = array_merge( $ids, $found );
@@ -259,12 +259,15 @@ final class RelatedCache {
 	/**
 	 * Runs a light ID-only query against a source.
 	 *
-	 * @param Source              $source Source.
-	 * @param array<string,mixed> $args   Extra query args.
-	 * @param int                 $limit  Max IDs.
+	 * Excluded IDs are filtered in PHP: fetching a few extra rows is cheaper than a NOT IN clause.
+	 *
+	 * @param Source              $source  Source.
+	 * @param array<string,mixed> $args    Extra query args.
+	 * @param int                 $limit   Max IDs.
+	 * @param int[]               $exclude IDs to leave out.
 	 * @return int[]
 	 */
-	private static function query( Source $source, array $args, $limit ) {
+	private static function query( Source $source, array $args, $limit, array $exclude = array() ) {
 		if ( $limit <= 0 ) {
 			return array();
 		}
@@ -281,7 +284,7 @@ final class RelatedCache {
 					'post_type'              => $source->post_type(),
 					'post_status'            => 'publish',
 					'has_password'           => false,
-					'posts_per_page'         => (int) $limit,
+					'posts_per_page'         => (int) $limit + count( $exclude ),
 					'fields'                 => 'ids',
 					'no_found_rows'          => true,
 					'ignore_sticky_posts'    => true,
@@ -295,6 +298,8 @@ final class RelatedCache {
 			)
 		);
 
-		return array_map( 'intval', $query->posts );
+		$ids = array_diff( array_map( 'intval', $query->posts ), array_map( 'intval', $exclude ) );
+
+		return array_slice( array_values( $ids ), 0, (int) $limit );
 	}
 }

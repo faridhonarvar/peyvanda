@@ -105,13 +105,13 @@
 				return;
 			}
 			var current = ++requestId;
-			var exclude = selectedIds();
+			var skip = selectedIds();
 			if ( postId ) {
-				exclude.push( postId );
+				skip.push( postId );
 			}
 			var query = '?search=' + encodeURIComponent( term ) + '&post_type=' + encodeURIComponent( postType );
-			exclude.forEach( function ( id ) {
-				query += '&exclude[]=' + id;
+			skip.forEach( function ( id ) {
+				query += '&skip[]=' + id;
 			} );
 			setStatus( i18n.searching );
 			window.wp.apiFetch( { path: settings.path + query } ).then( function ( items ) {

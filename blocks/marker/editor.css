@@ -1,1 +1,12 @@
-.pvd-marker-placeholder { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; padding: 10px 14px; font-size: 13px; color: #1e1e1e; background: #f0f6fc; border: 1px dashed #3858e9; border-radius: 4px; }
+.pvd-marker-placeholder {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px 8px;
+	align-items: baseline;
+	padding: 10px 14px;
+	font-size: 13px;
+	color: #1e1e1e;
+	background: #f0f6fc;
+	border: 1px dashed #3858e9;
+	border-radius: 4px;
+}

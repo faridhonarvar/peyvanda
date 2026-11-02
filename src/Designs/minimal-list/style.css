@@ -1,7 +1,28 @@
 /* Peyvanda design: minimal-list */
-.pvd-box.pvd-box--minimal-list { padding-block: 12px; background: none; border-block: 0; border-inline-end: 0; border-radius: 0; }
-.pvd-box.pvd-box--minimal-list .pvd-box__title { margin-block-end: 6px; font-size: 1em; }
-.pvd-box.pvd-box--minimal-list .pvd-box__list { display: grid; gap: var(--pvd-gap); }
-.pvd-box.pvd-box--minimal-list .pvd-box__link { align-items: baseline; flex-wrap: wrap; gap: 4px 10px; }
-.pvd-box.pvd-box--minimal-list .pvd-box__name { font-weight: 500; color: var(--pvd-accent); }
-.pvd-box.pvd-box--minimal-list .pvd-box__price { margin: 0; }
+.pvd-box.pvd-box--minimal-list {
+	padding-block: 12px;
+	background: none;
+	border-block: 0;
+	border-inline-end: 0;
+	border-radius: 0;
+}
+.pvd-box.pvd-box--minimal-list .pvd-box__title {
+	margin-block-end: 6px;
+	font-size: 1em;
+}
+.pvd-box.pvd-box--minimal-list .pvd-box__list {
+	display: grid;
+	gap: var(--pvd-gap);
+}
+.pvd-box.pvd-box--minimal-list .pvd-box__link {
+	align-items: baseline;
+	flex-wrap: wrap;
+	gap: 4px 10px;
+}
+.pvd-box.pvd-box--minimal-list .pvd-box__name {
+	font-weight: 500;
+	color: var(--pvd-accent);
+}
+.pvd-box.pvd-box--minimal-list .pvd-box__price {
+	margin: 0;
+}
