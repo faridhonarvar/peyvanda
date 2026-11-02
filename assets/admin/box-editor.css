@@ -1,0 +1,8 @@
+.pvd-editor__tabs { display: flex; flex-wrap: wrap; gap: 4px; margin: 0 -12px 12px; padding: 0 12px; border-bottom: 1px solid #dcdcde; }
+.pvd-editor__tab { margin: 0 0 -1px; padding: 10px 14px; font-size: 13px; font-weight: 600; color: #50575e; background: none; border: 1px solid transparent; border-bottom: 0; border-radius: 4px 4px 0 0; cursor: pointer; }
+.pvd-editor__tab[aria-selected="true"] { color: #1d2327; background: #fff; border-color: #dcdcde; }
+.pvd-editor__tab:focus-visible { outline: 2px solid #3858e9; outline-offset: -2px; }
+.pvd-editor__check { display: block; margin: 0 0 6px; }
+.pvd-editor__designs { display: flex; flex-wrap: wrap; gap: 8px; }
+.pvd-editor__design { display: flex; align-items: center; gap: 6px; padding: 8px 12px; border: 1px solid #dcdcde; border-radius: 4px; cursor: pointer; }
+.pvd-editor__design:has(input:checked) { border-color: #3858e9; box-shadow: 0 0 0 1px #3858e9; }

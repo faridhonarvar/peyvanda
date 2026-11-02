@@ -1,0 +1,10 @@
+.pvd-manual__selected { margin: 8px 0; }
+.pvd-manual__chip { display: flex; align-items: center; gap: 6px; padding: 6px 8px; margin: 0 0 6px; background: #f0f6fc; border: 1px solid #c5d9ed; border-radius: 4px; }
+.pvd-manual__chip-title { flex: 1; overflow-wrap: anywhere; }
+.pvd-manual__remove { font-size: 18px; line-height: 1; color: #b32d2e; text-decoration: none; cursor: pointer; }
+.pvd-manual__results { margin: 4px 0 0; max-height: 220px; overflow-y: auto; }
+.pvd-manual__results li { margin: 0; }
+.pvd-manual__result { display: block; width: 100%; padding: 6px 8px; text-align: start; background: #fff; border: 0; border-bottom: 1px solid #eee; cursor: pointer; }
+.pvd-manual__result:hover, .pvd-manual__result:focus { background: #f6f7f7; }
+.pvd-manual__result small { display: block; color: #646970; }
+.pvd-manual__status { min-height: 1em; margin: 4px 0 0; color: #646970; }

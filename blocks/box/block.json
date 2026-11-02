@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "peyvanda/box",
+	"version": "0.1.0",
+	"title": "Peyvanda box",
+	"category": "widgets",
+	"icon": "screenoptions",
+	"description": "Show a Peyvanda related-content box at this exact spot.",
+	"keywords": [ "related", "posts", "products", "peyvanda" ],
+	"textdomain": "peyvanda",
+	"attributes": {
+		"boxId": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"editorScript": "file:./index.js"
+}

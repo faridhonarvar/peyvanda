@@ -1,0 +1,15 @@
+/* Peyvanda design: horizontal-card */
+.pvd-box.pvd-box--horizontal-card { --pvd-columns: 1; }
+.pvd-box.pvd-box--horizontal-card .pvd-box__list { display: grid; grid-template-columns: repeat(var(--pvd-columns), minmax(0, 1fr)); gap: var(--pvd-gap); }
+.pvd-box.pvd-box--horizontal-card .pvd-box__link { align-items: stretch; gap: 14px; height: 100%; padding: 10px; background: rgba(127, 127, 127, 0.06); border: 1px solid var(--pvd-line); border-radius: var(--pvd-radius); transition: border-color 0.15s ease; }
+.pvd-box.pvd-box--horizontal-card .pvd-box__link:hover { border-color: var(--pvd-accent); }
+.pvd-box.pvd-box--horizontal-card .pvd-box__img { flex: 0 0 112px; width: 112px; height: 84px; aspect-ratio: 4 / 3; }
+.pvd-box.pvd-box--horizontal-card .pvd-box__body { flex: 1 1 auto; min-width: 0; align-self: center; }
+.pvd-box.pvd-box--horizontal-card .pvd-box__excerpt { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+@media (max-width: 600px) {
+	.pvd-box.pvd-box--horizontal-card .pvd-box__list { grid-template-columns: minmax(0, 1fr); }
+	.pvd-box.pvd-box--horizontal-card .pvd-box__img { flex-basis: 88px; width: 88px; height: 66px; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.pvd-box.pvd-box--horizontal-card .pvd-box__link { transition: none; }
+}

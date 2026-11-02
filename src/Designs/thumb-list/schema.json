@@ -1,0 +1,10 @@
+{
+	"image_size": "thumbnail",
+	"fields": {
+		"accent": { "type": "color", "default": "#2563eb", "css": "accent" },
+		"gap": { "type": "number", "default": 12, "min": 0, "max": 40, "unit": "px", "css": "gap" },
+		"radius": { "type": "number", "default": 8, "min": 0, "max": 24, "unit": "px", "css": "radius" },
+		"show_image": { "type": "toggle", "default": true },
+		"show_price": { "type": "toggle", "default": true }
+	}
+}

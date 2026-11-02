@@ -1,0 +1,21 @@
+{
+    "translation-revision-date": "2026-11-02 07:26:08+0000",
+    "generator": "peyvanda/bin/i18n.php",
+    "source": "blocks/marker/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "fa_IR",
+                "plural-forms": "nplurals=2; plural=(n > 1);"
+            },
+            "Peyvanda": [
+                "پیوندا"
+            ],
+            "The automatic related box will appear here instead of after paragraph N.": [
+                "باکس خودکار مطالب مرتبط به‌جای «بعد از پاراگراف N» اینجا نمایش داده می‌شود."
+            ]
+        }
+    }
+}

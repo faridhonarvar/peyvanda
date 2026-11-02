@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "peyvanda/marker",
+	"version": "0.1.0",
+	"title": "Peyvanda marker",
+	"category": "widgets",
+	"icon": "location",
+	"description": "Choose where the automatic Peyvanda box appears in this post.",
+	"keywords": [ "related", "peyvanda", "position" ],
+	"textdomain": "peyvanda",
+	"supports": {
+		"html": false,
+		"multiple": false,
+		"reusable": false
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css"
+}

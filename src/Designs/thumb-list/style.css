@@ -1,0 +1,5 @@
+/* Peyvanda design: thumb-list */
+.pvd-box.pvd-box--thumb-list .pvd-box__list { display: grid; gap: var(--pvd-gap); }
+.pvd-box.pvd-box--thumb-list .pvd-box__link { align-items: center; gap: 12px; }
+.pvd-box.pvd-box--thumb-list .pvd-box__img { flex: 0 0 64px; width: 64px; height: 64px; aspect-ratio: 1; }
+.pvd-box.pvd-box--thumb-list .pvd-box__body { flex: 1 1 auto; min-width: 0; }
