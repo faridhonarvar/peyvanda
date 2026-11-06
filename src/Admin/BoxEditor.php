@@ -407,26 +407,26 @@ final class BoxEditor {
 			return;
 		}
 
-		// Each value is sanitized in sanitize_settings().
-		$raw = isset( $_POST['pvd'] ) && is_array( $_POST['pvd'] ) ? wp_unslash( $_POST['pvd'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		// Sanitized as soon as it is received; sanitize_settings() then validates each value strictly.
+		$input = isset( $_POST['pvd'] ) && is_array( $_POST['pvd'] ) ? map_deep( wp_unslash( $_POST['pvd'] ), 'sanitize_text_field' ) : array();
 
-		update_post_meta( $post_id, Box::META, $this->sanitize_settings( $raw ) );
+		update_post_meta( $post_id, Box::META, $this->sanitize_settings( $input ) );
 		$this->boxes->flush();
 
 		/**
 		 * Fires after a box's settings are saved. Add-ons save their own tab fields here.
 		 *
 		 * @param int      $post_id Box ID.
-		 * @param array    $raw     Raw, unslashed `pvd` input (sanitize before use).
+		 * @param array    $input   Submitted `pvd` fields, already passed through sanitize_text_field(); validate them for your own use.
 		 * @param \WP_Post $post    Box post.
 		 */
-		do_action( 'peyvanda_save_box_settings', $post_id, $raw, $post );
+		do_action( 'peyvanda_save_box_settings', $post_id, $input, $post );
 	}
 
 	/**
-	 * Sanitizes raw box settings.
+	 * Validates box settings (input is already passed through sanitize_text_field()).
 	 *
-	 * @param array<string,mixed> $raw Raw input.
+	 * @param array<string,mixed> $raw Submitted fields.
 	 * @return array<string,mixed>
 	 */
 	public function sanitize_settings( array $raw ) {
@@ -462,7 +462,7 @@ final class BoxEditor {
 		 * Filters sanitized box settings before they are saved.
 		 *
 		 * @param array $settings Sanitized settings.
-		 * @param array $raw      Raw input.
+		 * @param array $raw      Submitted fields, already passed through sanitize_text_field().
 		 */
 		return (array) apply_filters( 'peyvanda_sanitize_box_settings', $settings, $raw );
 	}

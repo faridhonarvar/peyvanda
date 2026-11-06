@@ -233,11 +233,11 @@ final class ManualMetabox {
 			return;
 		}
 
-		$raw    = isset( $_POST['peyvanda_manual_items'] ) ? array_map( 'absint', (array) wp_unslash( $_POST['peyvanda_manual_items'] ) ) : array();
+		$picked = isset( $_POST['peyvanda_manual_items'] ) ? array_map( 'absint', (array) wp_unslash( $_POST['peyvanda_manual_items'] ) ) : array();
 		$limits = self::limits( $post->post_type );
 		$ids    = array();
 
-		foreach ( self::sanitize_ids( $raw ) as $id ) {
+		foreach ( self::sanitize_ids( $picked ) as $id ) {
 			if ( $id === $post_id ) {
 				continue;
 			}

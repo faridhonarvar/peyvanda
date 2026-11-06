@@ -159,7 +159,7 @@ function peyvanda_po_str( $s ) {
 
 // Write POT.
 $pot  = "# Copyright (C) Farid Honarvar\n# This file is distributed under the GPL-2.0-or-later.\nmsgid \"\"\nmsgstr \"\"\n";
-$pot .= "\"Project-Id-Version: Peyvanda 0.1.2\\n\"\n\"MIME-Version: 1.0\\n\"\n\"Content-Type: text/plain; charset=UTF-8\\n\"\n\"Content-Transfer-Encoding: 8bit\\n\"\n\"X-Domain: peyvanda\\n\"\n";
+$pot .= "\"Project-Id-Version: Peyvanda 0.1.3\\n\"\n\"MIME-Version: 1.0\\n\"\n\"Content-Type: text/plain; charset=UTF-8\\n\"\n\"Content-Transfer-Encoding: 8bit\\n\"\n\"X-Domain: peyvanda\\n\"\n";
 foreach ( $entries as $e ) {
 	$pot .= "\n";
 	foreach ( $e['comments'] as $c ) {

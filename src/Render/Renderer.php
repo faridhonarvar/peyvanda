@@ -212,6 +212,33 @@ final class Renderer {
 	}
 
 	/**
+	 * Tags and attributes allowed in box output: post HTML plus responsive image attributes
+	 * (srcset, sizes, decoding, fetchpriority) and <bdi>, which WooCommerce uses in prices.
+	 *
+	 * @return array<string,array<string,bool>>
+	 */
+	public static function allowed_html() {
+		static $allowed = null;
+		if ( null === $allowed ) {
+			$allowed        = wp_kses_allowed_html( 'post' );
+			$allowed['img'] = array_merge(
+				isset( $allowed['img'] ) ? $allowed['img'] : array(),
+				array(
+					'srcset'        => true,
+					'sizes'         => true,
+					'decoding'      => true,
+					'fetchpriority' => true,
+				)
+			);
+			$allowed['bdi'] = array(
+				'class' => true,
+				'dir'   => true,
+			);
+		}
+		return $allowed;
+	}
+
+	/**
 	 * Includes the design template.
 	 *
 	 * @param Box                            $box    Box.
@@ -225,23 +252,18 @@ final class Renderer {
 		$values  = $design->values( isset( $style[ $design->slug ] ) && is_array( $style[ $design->slug ] ) ? $style[ $design->slug ] : array() );
 		$heading = $box->heading();
 
-		$root = sprintf(
-			'class="%1$s" style="%2$s" aria-label="%3$s" data-pvd-box="%4$d"',
-			esc_attr( 'pvd-box pvd-box--' . $design->slug ),
-			esc_attr( $design->css_variables( $values ) ),
-			esc_attr( '' !== $heading ? $heading : __( 'Related content', 'peyvanda' ) ),
-			$box->id
-		);
-
 		$peyvanda_args = array(
-			'box'             => $box,
-			'design'          => $design,
-			'items'           => $items,
-			'post'            => $post,
-			'heading'         => $heading,
-			'settings'        => $values,
-			'root_attributes' => $root,
-			'item_html'       => static function ( $html, $item ) use ( $box ) {
+			'box'          => $box,
+			'design'       => $design,
+			'items'        => $items,
+			'post'         => $post,
+			'heading'      => $heading,
+			'settings'     => $values,
+			'root_class'   => 'pvd-box pvd-box--' . $design->slug,
+			'root_style'   => $design->css_variables( $values ),
+			'root_label'   => '' !== $heading ? $heading : __( 'Related content', 'peyvanda' ),
+			'allowed_html' => self::allowed_html(),
+			'item_html'    => static function ( $html, $item ) use ( $box ) {
 				/**
 				 * Filters the HTML of one item.
 				 *
@@ -251,7 +273,7 @@ final class Renderer {
 				 */
 				return (string) apply_filters( 'peyvanda_item_html', $html, $item, $box );
 			},
-			'image'           => static function ( $item ) {
+			'image'        => static function ( $item ) {
 				if ( empty( $item['image_id'] ) ) {
 					return '';
 				}

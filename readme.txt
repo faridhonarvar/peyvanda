@@ -4,7 +4,7 @@ Tags: inline related posts, related posts, related products, read more, internal
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.1.2
+Stable tag: 0.1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -106,6 +106,11 @@ Peyvanda works through the standard WordPress content filter, so it works with t
 8. Site-wide settings.
 
 == Changelog ==
+
+= 0.1.3 =
+* Security hardening: box settings are sanitized as soon as they are received, and all box output, including filtered item HTML, is escaped.
+* WooCommerce prices keep their bidi isolation markup, so currency and amount display in the right order on RTL sites.
+* Translations are delivered through translate.wordpress.org.
 
 = 0.1.2 =
 * Performance: related-item and search queries no longer use NOT IN clauses.

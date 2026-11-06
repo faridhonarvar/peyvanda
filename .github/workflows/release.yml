@@ -1,6 +1,7 @@
 name: Release zip
 
-# Builds peyvanda.zip (without dev files) and attaches it to every published release.
+# Builds peyvanda.zip (with the Persian translation) and peyvanda-wordpress-org.zip
+# (without translation files) and attaches both to every published release.
 on:
   release:
     types: [published]
@@ -18,12 +19,18 @@ jobs:
           TAG="${GITHUB_REF_NAME#v}"
           grep -q "Version:           ${TAG}$" peyvanda.php || { echo "peyvanda.php Version does not match tag ${TAG}"; exit 1; }
           grep -q "^Stable tag: ${TAG}$" readme.txt || { echo "readme.txt Stable tag does not match tag ${TAG}"; exit 1; }
-      - name: Build zip
+      - name: Build zips
         run: |
-          mkdir -p build/peyvanda
-          rsync -a --exclude-from=.distignore --exclude=build ./ build/peyvanda/
-          cd build && zip -qr peyvanda.zip peyvanda
+          # WordPress.org package: translations come from translate.wordpress.org.
+          mkdir -p build/wporg/peyvanda
+          rsync -a --exclude-from=.distignore --exclude=build ./ build/wporg/peyvanda/
+          (cd build/wporg && zip -qr ../peyvanda-wordpress-org.zip peyvanda)
+          # Download package: same files plus the bundled Persian translation.
+          mkdir -p build/full
+          cp -r build/wporg/peyvanda build/full/peyvanda
+          cp languages/*.po languages/*.mo languages/*.json build/full/peyvanda/languages/
+          (cd build/full && zip -qr ../peyvanda.zip peyvanda)
       - name: Upload to release
-        run: gh release upload "$GITHUB_REF_NAME" build/peyvanda.zip --clobber
+        run: gh release upload "$GITHUB_REF_NAME" build/peyvanda.zip build/peyvanda-wordpress-org.zip --clobber
         env:
           GH_TOKEN: ${{ github.token }}
