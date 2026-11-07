@@ -4,7 +4,7 @@ Tags: inline related posts, related posts, related products, read more, internal
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.1.3
+Stable tag: 0.1.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,7 +54,7 @@ Full right-to-left support with logical CSS properties. A complete Persian (fa_I
 
 = For developers =
 
-Filters and actions: `peyvanda_items`, `peyvanda_should_render`, `peyvanda_item_html`, `peyvanda_manual_items`, `peyvanda_manual_metabox_limits`, `peyvanda_box_settings_tabs`, `peyvanda_sanitize_box_settings`, `peyvanda_max_auto_boxes`, `peyvanda_register_designs`, `peyvanda_register_sources`, `peyvanda_save_box_settings`, `peyvanda_loaded`.
+Filters and actions: `peyvanda_items`, `peyvanda_should_render`, `peyvanda_item_html`, `peyvanda_manual_items`, `peyvanda_manual_metabox_limits`, `peyvanda_box_settings_tabs`, `peyvanda_sanitize_box_settings`, `peyvanda_max_auto_boxes`, `peyvanda_automatic_items`, `peyvanda_insert_box`, `peyvanda_design_field_label`, `peyvanda_register_designs`, `peyvanda_register_sources`, `peyvanda_save_box_settings`, `peyvanda_loaded`.
 
 Source code and issue tracker: [github.com/faridhonarvar/peyvanda](https://github.com/faridhonarvar/peyvanda)
 
@@ -106,6 +106,9 @@ Peyvanda works through the standard WordPress content filter, so it works with t
 8. Site-wide settings.
 
 == Changelog ==
+
+= 0.1.4 =
+* Developers: new `peyvanda_automatic_items`, `peyvanda_insert_box` and `peyvanda_design_field_label` filters for add-ons.
 
 = 0.1.3 =
 * Security hardening: box settings are sanitized as soon as they are received, and all box output, including filtered item HTML, is escaped.

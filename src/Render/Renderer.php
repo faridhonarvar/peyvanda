@@ -145,6 +145,17 @@ final class Renderer {
 			$automatic = RelatedCache::get( $post, $source, (string) $box->get( 'match_by' ) );
 		}
 
+		/**
+		 * Filters the automatically matched item IDs before manual picks and the fallback are applied.
+		 * Add-ons can replace taxonomy matching with their own ranking here.
+		 *
+		 * @param int[]         $automatic Matched IDs, best first.
+		 * @param Box           $box       Box.
+		 * @param \WP_Post|null $post      Context post.
+		 * @param Source        $source    Source the items come from.
+		 */
+		$automatic = (array) apply_filters( 'peyvanda_automatic_items', $automatic, $box, $post, $source );
+
 		$fallback = static function () use ( $source ) {
 			return 'none' === Settings::get( 'fallback' ) ? array() : RelatedCache::fallback( $source );
 		};

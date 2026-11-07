@@ -360,7 +360,15 @@ final class BoxEditor {
 		if ( isset( $labels[ $key ] ) ) {
 			return $labels[ $key ];
 		}
-		return isset( $field['label'] ) ? (string) $field['label'] : $key;
+
+		/**
+		 * Filters the label of a design field that Peyvanda does not know (fields of add-on designs).
+		 *
+		 * @param string $label Label from schema.json, or the field key.
+		 * @param string $key   Field key.
+		 * @param array  $field Field schema.
+		 */
+		return (string) apply_filters( 'peyvanda_design_field_label', isset( $field['label'] ) ? (string) $field['label'] : $key, $key, $field );
 	}
 
 	/**

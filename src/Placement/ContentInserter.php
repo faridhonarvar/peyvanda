@@ -108,6 +108,22 @@ final class ContentInserter {
 				continue;
 			}
 
+			/**
+			 * Lets add-ons place an automatic box themselves (for example after a heading).
+			 * Return the full new content to take over, or null for the default placement.
+			 *
+			 * @param string|null $placed  Null, or the content with the box placed.
+			 * @param string      $content Content before placement.
+			 * @param string      $html    Box HTML.
+			 * @param \Peyvanda\Boxes\Box $box Box.
+			 * @param \WP_Post    $post    Current post.
+			 */
+			$placed = apply_filters( 'peyvanda_insert_box', null, $content, $html, $box, $post );
+			if ( is_string( $placed ) ) {
+				$content = $placed;
+				continue;
+			}
+
 			$content = ParagraphInserter::insert( $content, $html, (int) $box->get( 'paragraph', 3 ), 'hide' !== $box->get( 'short_content' ) );
 		}
 
