@@ -273,6 +273,7 @@
 	box-shadow: 0 10px 30px -18px rgba(24, 32, 74, 0.35);
 }
 .pvd-preview__page {
+	box-sizing: border-box;
 	padding: 28px 30px;
 	font-size: 17px;
 	line-height: 1.7;
