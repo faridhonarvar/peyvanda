@@ -18,6 +18,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
+// Another copy of Peyvanda (for example one bundled in an add-on) is already loaded.
+if ( defined( 'PEYVANDA_FILE' ) ) {
+	return;
+}
+
 define( 'PEYVANDA_VERSION', '0.2.0' );
 define( 'PEYVANDA_FILE', __FILE__ );
 define( 'PEYVANDA_DIR', plugin_dir_path( __FILE__ ) );
