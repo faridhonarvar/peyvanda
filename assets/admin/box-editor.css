@@ -60,6 +60,10 @@
 	display: block;
 	margin: 0;
 }
+
+.pvd-editor .form-table[hidden] {
+	display: none;
+}
 .pvd-editor .form-table tr {
 	display: grid;
 	grid-template-columns: minmax(150px, 0.38fr) minmax(0, 1fr);
