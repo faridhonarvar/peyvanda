@@ -1,54 +1,338 @@
+/* Peyvanda — box editor (admin only). */
+#pvd-box-settings .inside {
+	margin: 0;
+	padding: 0;
+}
+.pvd-editor {
+	--pvd-ui-accent: #2563eb;
+	--pvd-ui-ink: #18204a;
+	--pvd-ui-line: #e2e6f0;
+	--pvd-ui-soft: #f5f7fc;
+	display: grid;
+	grid-template-columns: minmax(0, 1.1fr) minmax(320px, 1fr);
+	align-items: start;
+	background: #fff;
+}
+.pvd-editor__main {
+	min-width: 0;
+	padding: 18px 20px 24px;
+	border-inline-end: 1px solid var(--pvd-ui-line);
+}
+
+/* Tabs: a segmented control. */
 .pvd-editor__tabs {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 4px;
-	margin: 0 -12px 12px;
-	padding: 0 12px;
-	border-bottom: 1px solid #dcdcde;
+	margin: 0 0 18px;
+	padding: 4px;
+	background: var(--pvd-ui-soft);
+	border-radius: 10px;
 }
 .pvd-editor__tab {
-	margin: 0 0 -1px;
-	padding: 10px 14px;
+	flex: 1 1 auto;
+	padding: 8px 14px;
 	font-size: 13px;
 	font-weight: 600;
 	color: #50575e;
-	background: none;
-	border: 1px solid transparent;
-	border-bottom: 0;
-	border-radius: 4px 4px 0 0;
+	background: transparent;
+	border: 0;
+	border-radius: 7px;
 	cursor: pointer;
+	transition: background-color 0.15s ease, color 0.15s ease;
+}
+.pvd-editor__tab:hover {
+	color: var(--pvd-ui-ink);
 }
 .pvd-editor__tab[aria-selected="true"] {
-	color: #1d2327;
+	color: var(--pvd-ui-ink);
 	background: #fff;
-	border-color: #dcdcde;
+	box-shadow: 0 1px 2px rgba(24, 32, 74, 0.12);
 }
 .pvd-editor__tab:focus-visible {
-	outline: 2px solid #3858e9;
-	outline-offset: -2px;
+	outline: 2px solid var(--pvd-ui-accent);
+	outline-offset: 1px;
 }
-.pvd-editor__check {
+
+/* Fields: rows instead of the classic two-column table. */
+.pvd-editor .form-table,
+.pvd-editor .form-table tbody {
 	display: block;
-	margin: 0 0 6px;
+	margin: 0;
 }
-.pvd-editor__designs {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 8px;
-}
-.pvd-editor__design {
-	display: flex;
+.pvd-editor .form-table tr {
+	display: grid;
+	grid-template-columns: minmax(150px, 0.38fr) minmax(0, 1fr);
+	gap: 4px 16px;
 	align-items: center;
-	gap: 6px;
-	padding: 8px 12px;
-	border: 1px solid #dcdcde;
-	border-radius: 4px;
+	padding: 12px 0;
+	border-block-end: 1px solid var(--pvd-ui-line);
+}
+.pvd-editor .form-table tr:last-child {
+	border-block-end: 0;
+}
+.pvd-editor .form-table th,
+.pvd-editor .form-table td {
+	display: block;
+	width: auto;
+	margin: 0;
+	padding: 0;
+	text-align: start;
+}
+.pvd-editor .form-table th {
+	font-weight: 600;
+	color: var(--pvd-ui-ink);
+}
+.pvd-editor .form-table td .description {
+	margin-block-start: 4px;
+	font-size: 12px;
+}
+.pvd-editor input[type="text"],
+.pvd-editor input[type="number"],
+.pvd-editor select,
+.pvd-editor textarea {
+	border-color: #cfd5e3;
+	border-radius: 6px;
+}
+.pvd-editor input[type="text"].regular-text {
+	width: 100%;
+	max-width: 420px;
+}
+.pvd-editor input[type="color"] {
+	width: 48px;
+	height: 32px;
+	padding: 2px;
+	border: 1px solid #cfd5e3;
+	border-radius: 6px;
 	cursor: pointer;
 }
-.pvd-editor__design:has(input:checked) {
-	border-color: #3858e9;
-	box-shadow: 0 0 0 1px #3858e9;
+.pvd-editor__heading {
+	margin: 4px 0 10px;
+	font-size: 14px;
+	color: var(--pvd-ui-ink);
+}
+
+/* Checkboxes as switches. */
+.pvd-editor .form-table input[type="checkbox"] {
+	position: relative;
+	width: 34px;
+	height: 20px;
+	margin: 0;
+	margin-inline-end: 6px;
+	vertical-align: middle;
+	background: #c3c8d4;
+	border: 0;
+	border-radius: 999px;
+	box-shadow: none;
+	transition: background-color 0.15s ease;
+	appearance: none;
+	-webkit-appearance: none;
+}
+.pvd-editor .form-table input[type="checkbox"]::before {
+	content: "";
+	position: absolute;
+	inset-block-start: 3px;
+	inset-inline-start: 3px;
+	width: 14px;
+	height: 14px;
+	margin: 0;
+	background: #fff;
+	border-radius: 50%;
+	transition: transform 0.15s ease;
+}
+.pvd-editor .form-table input[type="checkbox"]:checked {
+	background: var(--pvd-ui-accent);
+}
+.pvd-editor .form-table input[type="checkbox"]:checked::before {
+	transform: translateX(14px);
+}
+[dir="rtl"] .pvd-editor .form-table input[type="checkbox"]:checked::before {
+	transform: translateX(-14px);
+}
+.pvd-editor .form-table input[type="checkbox"]:focus-visible {
+	outline: 2px solid var(--pvd-ui-accent);
+	outline-offset: 2px;
 }
 .pvd-editor .form-table td fieldset label.pvd-editor__check {
 	display: block;
+	margin: 6px 0;
+}
+
+/* Design picker: cards with live mini previews. */
+.pvd-editor__designs {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	gap: 12px;
+	margin: 0 0 18px;
+}
+.pvd-editor__design {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	background: #fff;
+	border: 1px solid var(--pvd-ui-line);
+	border-radius: 10px;
+	cursor: pointer;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.pvd-editor__design:hover {
+	border-color: #aab4cf;
+}
+.pvd-editor__design:has(input:checked) {
+	border-color: var(--pvd-ui-accent);
+	box-shadow: 0 0 0 2px var(--pvd-ui-accent);
+}
+.pvd-editor__design:has(input:focus-visible) {
+	outline: 2px solid var(--pvd-ui-accent);
+	outline-offset: 2px;
+}
+.pvd-editor__thumb {
+	position: relative;
+	display: block;
+	height: 112px;
+	overflow: hidden;
+	background: var(--pvd-ui-soft);
+	border-block-end: 1px solid var(--pvd-ui-line);
+}
+.pvd-editor__thumb-inner {
+	position: absolute;
+	inset-block-start: 8px;
+	inset-inline-start: 8px;
+	width: 520px;
+	transform: scale(0.26);
+	transform-origin: top left;
+	pointer-events: none;
+}
+[dir="rtl"] .pvd-editor__thumb-inner {
+	transform-origin: top right;
+}
+.pvd-editor__thumb-inner .pvd-box {
+	margin: 0;
+}
+.pvd-editor__design-name {
+	padding: 8px 10px;
+	font-size: 12px;
+	font-weight: 600;
+	color: var(--pvd-ui-ink);
+}
+
+/* Live preview. */
+.pvd-preview {
+	position: sticky;
+	inset-block-start: 46px;
+	min-width: 0;
+	padding: 18px 20px 20px;
+	background: var(--pvd-ui-soft);
+}
+.pvd-preview__bar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	margin-block-end: 12px;
+}
+.pvd-preview__title {
+	font-size: 14px;
+	color: var(--pvd-ui-ink);
+}
+.pvd-preview__status {
+	flex: 1;
+	font-size: 12px;
+	color: #646970;
+}
+.pvd-preview__devices {
+	display: inline-flex;
+	padding: 3px;
+	background: #fff;
+	border: 1px solid var(--pvd-ui-line);
+	border-radius: 8px;
+}
+.pvd-preview__device {
+	padding: 4px 10px;
+	font-size: 12px;
+	color: #50575e;
+	background: none;
+	border: 0;
+	border-radius: 6px;
+	cursor: pointer;
+}
+.pvd-preview__device[aria-pressed="true"] {
+	color: #fff;
+	background: var(--pvd-ui-ink);
+}
+.pvd-preview__viewport {
+	position: relative;
+	overflow: hidden;
+	background: #fff;
+	border: 1px solid var(--pvd-ui-line);
+	border-radius: 12px;
+	box-shadow: 0 10px 30px -18px rgba(24, 32, 74, 0.35);
+}
+.pvd-preview__page {
+	padding: 28px 30px;
+	font-size: 17px;
+	line-height: 1.7;
+	color: #1e1e1e;
+	transform-origin: top left;
+}
+[dir="rtl"] .pvd-preview__page {
+	transform-origin: top right;
+}
+.pvd-preview__line {
+	display: block;
+	height: 10px;
+	margin: 0 0 14px;
+	background: #e7eaf2;
+	border-radius: 6px;
+}
+.pvd-preview__line--short {
+	width: 62%;
+}
+.pvd-preview__slot {
+	min-height: 40px;
+	margin: 22px 0;
+}
+.pvd-preview__slot .pvd-box {
+	margin: 0;
+}
+.pvd-preview__empty {
+	padding: 18px;
+	font-size: 13px;
+	color: #646970;
+	text-align: center;
+	border: 1px dashed #c3c8d4;
+	border-radius: 8px;
+}
+.pvd-preview.is-loading .pvd-preview__slot {
+	opacity: 0.55;
+	transition: opacity 0.15s ease;
+}
+.pvd-preview__sample {
+	margin: 10px 0 0;
+	font-size: 12px;
+	color: #646970;
+}
+
+@media (max-width: 1180px) {
+	.pvd-editor {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.pvd-editor__main {
+		border-inline-end: 0;
+		border-block-end: 1px solid var(--pvd-ui-line);
+	}
+	.pvd-preview {
+		position: static;
+	}
+}
+@media (max-width: 600px) {
+	.pvd-editor .form-table tr {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.pvd-editor *,
+	.pvd-preview * {
+		transition: none !important;
+	}
 }

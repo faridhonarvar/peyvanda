@@ -20,6 +20,7 @@ use Peyvanda\Placement\ContentInserter;
 use Peyvanda\Placement\Shortcode;
 use Peyvanda\Render\Assets;
 use Peyvanda\Render\Renderer;
+use Peyvanda\Rest\PreviewController;
 use Peyvanda\Rest\RestController;
 use Peyvanda\Sources\SourceRegistry;
 
@@ -101,6 +102,7 @@ final class Plugin {
 		( new Blocks( $this->renderer ) )->register_hooks();
 		( new ManualMetabox( $this->sources ) )->register_hooks();
 		( new RestController( $this->boxes, $this->sources ) )->register_hooks();
+		( new PreviewController() )->register_hooks();
 
 		if ( is_admin() ) {
 			( new AdminMenu() )->register_hooks();

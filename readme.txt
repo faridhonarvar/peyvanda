@@ -4,7 +4,7 @@ Tags: inline related posts, related posts, related products, read more, internal
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.1.4
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,7 @@ More page views, longer visits, more internal links, and more product sales from
 * **Automatic insertion after paragraph N.** Choose the paragraph and Peyvanda does the rest on every post.
 * **Never breaks your content.** Boxes are never placed inside tables, quotes, lists, code blocks, galleries or columns. Placement uses WordPress's own HTML parser.
 * **Short posts handled.** Show the box at the end, or not at all, when a post has fewer paragraphs.
+* **Live preview** in the box editor shows every change instantly, on desktop and mobile sizes.
 * **Pick the exact spot** with the "Peyvanda marker" block, or place any box anywhere with the "Peyvanda box" block or the `[peyvanda id="12"]` shortcode.
 
 = Related posts and related products =
@@ -54,7 +55,7 @@ Full right-to-left support with logical CSS properties. A complete Persian (fa_I
 
 = For developers =
 
-Filters and actions: `peyvanda_items`, `peyvanda_should_render`, `peyvanda_item_html`, `peyvanda_manual_items`, `peyvanda_manual_metabox_limits`, `peyvanda_box_settings_tabs`, `peyvanda_sanitize_box_settings`, `peyvanda_max_auto_boxes`, `peyvanda_automatic_items`, `peyvanda_insert_box`, `peyvanda_design_field_label`, `peyvanda_register_designs`, `peyvanda_register_sources`, `peyvanda_save_box_settings`, `peyvanda_loaded`.
+Filters and actions: `peyvanda_items`, `peyvanda_should_render`, `peyvanda_item_html`, `peyvanda_manual_items`, `peyvanda_manual_metabox_limits`, `peyvanda_box_settings_tabs`, `peyvanda_sanitize_box_settings`, `peyvanda_max_auto_boxes`, `peyvanda_automatic_items`, `peyvanda_insert_box`, `peyvanda_design_field_label`, `peyvanda_show_notice_card`, `peyvanda_register_designs`, `peyvanda_register_sources`, `peyvanda_save_box_settings`, `peyvanda_loaded`.
 
 Source code and issue tracker: [github.com/faridhonarvar/peyvanda](https://github.com/faridhonarvar/peyvanda)
 
@@ -106,6 +107,11 @@ Peyvanda works through the standard WordPress content filter, so it works with t
 8. Site-wide settings.
 
 == Changelog ==
+
+= 0.2.0 =
+* New box editor: live preview of the box inside a real post, desktop and mobile sizes, and design cards that show each design before you pick it.
+* Redesigned settings page.
+* Developers: new `peyvanda_show_notice_card` filter.
 
 = 0.1.4 =
 * Developers: new `peyvanda_automatic_items`, `peyvanda_insert_box` and `peyvanda_design_field_label` filters for add-ons.

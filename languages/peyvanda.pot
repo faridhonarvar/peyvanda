@@ -2,7 +2,7 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Peyvanda 0.1.4\n"
+"Project-Id-Version: Peyvanda 0.2.0\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,7 +16,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: src/Admin/AdminMenu.php:55 src/Admin/BoxEditor.php:170
+#: src/Admin/AdminMenu.php:55 src/Admin/BoxEditor.php:191
 msgid "Status"
 msgstr ""
 
@@ -66,116 +66,154 @@ msgstr ""
 msgid "Design & appearance"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:172
-msgid "Box is active"
+#: src/Admin/BoxEditor.php:159 src/Admin/BoxEditor.php:161
+msgid "Live preview"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:176
-msgid "Heading"
+#: src/Admin/BoxEditor.php:163
+msgid "Preview size"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:179
-msgid "Shown above the items, e.g. \"Read more\" or \"Related products\". Leave empty for no heading."
+#: src/Admin/BoxEditor.php:164
+msgid "Desktop"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:183
-msgid "Show items from"
+#: src/Admin/BoxEditor.php:165
+msgid "Mobile"
 msgstr ""
 
 #: src/Admin/BoxEditor.php:193
-msgid "Number of items"
+msgid "Box is active"
 msgstr ""
 
 #: src/Admin/BoxEditor.php:197
-msgid "Automatic matching"
+msgid "Heading"
 msgstr ""
 
 #: src/Admin/BoxEditor.php:200
-msgid "Shared tags, then categories"
-msgstr ""
-
-#: src/Admin/BoxEditor.php:201
-msgid "Shared categories only"
-msgstr ""
-
-#: src/Admin/BoxEditor.php:202
-msgid "Shared tags only"
+msgid "Shown above the items, e.g. \"Read more\" or \"Related products\". Leave empty for no heading."
 msgstr ""
 
 #: src/Admin/BoxEditor.php:204
-msgid "Items picked manually on a post always come first. The fallback (latest posts / best-selling products) is set in Peyvanda → Settings."
+msgid "Show items from"
+msgstr ""
+
+#: src/Admin/BoxEditor.php:214
+msgid "Number of items"
+msgstr ""
+
+#: src/Admin/BoxEditor.php:218
+msgid "Automatic matching"
+msgstr ""
+
+#: src/Admin/BoxEditor.php:221
+msgid "Shared tags, then categories"
 msgstr ""
 
 #: src/Admin/BoxEditor.php:222
-msgid "Automatic insertion"
+msgid "Shared categories only"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:224
-msgid "Insert this box into the content automatically"
+#: src/Admin/BoxEditor.php:223
+msgid "Shared tags only"
 msgstr ""
 
 #: src/Admin/BoxEditor.php:225
+msgid "Items picked manually on a post always come first. The fallback (latest posts / best-selling products) is set in Peyvanda → Settings."
+msgstr ""
+
+#: src/Admin/BoxEditor.php:243
+msgid "Automatic insertion"
+msgstr ""
+
+#: src/Admin/BoxEditor.php:245
+msgid "Insert this box into the content automatically"
+msgstr ""
+
+#: src/Admin/BoxEditor.php:246
 msgid "Only one automatic box is inserted per page. Authors can move it with the \"Peyvanda marker\" block."
 msgstr ""
 
-#: src/Admin/BoxEditor.php:229
+#: src/Admin/BoxEditor.php:250
 msgid "After paragraph"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:233
+#: src/Admin/BoxEditor.php:254
 msgid "If the content is shorter"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:236
+#: src/Admin/BoxEditor.php:257
 msgid "Show at the end of the content"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:237
+#: src/Admin/BoxEditor.php:258
 msgid "Do not show"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:242
+#: src/Admin/BoxEditor.php:263
 msgid "Show on"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:267
+#: src/Admin/BoxEditor.php:286
 msgid "Design"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:352
+#: src/Admin/BoxEditor.php:296
+msgid "Appearance"
+msgstr ""
+
+#: src/Admin/BoxEditor.php:369
 msgid "Accent color"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:353
+#: src/Admin/BoxEditor.php:370
 msgid "Spacing"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:354
+#: src/Admin/BoxEditor.php:371
 msgid "Corner radius"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:355
+#: src/Admin/BoxEditor.php:372
 msgid "Columns"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:356
+#: src/Admin/BoxEditor.php:373
 msgid "Show image"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:357
+#: src/Admin/BoxEditor.php:374
 msgid "Show excerpt"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:358
+#: src/Admin/BoxEditor.php:375
 msgid "Show price (products)"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:374
+#: src/Admin/BoxEditor.php:399
 msgid "Shortcode:"
 msgstr ""
 
-#: src/Admin/BoxEditor.php:376
+#: src/Admin/BoxEditor.php:401
 msgid "Or add the \"Peyvanda box\" block in the block editor and choose this box."
+msgstr ""
+
+#: src/Admin/BoxEditor.php:514
+msgid "Updating…"
+msgstr ""
+
+#: src/Admin/BoxEditor.php:515
+msgid "No items to show yet. Publish a few posts with shared tags or categories, or set a fallback in Peyvanda → Settings."
+msgstr ""
+
+#: src/Admin/BoxEditor.php:516
+msgid "The preview could not be loaded."
+msgstr ""
+
+#. translators: %s: post title.
+#: src/Admin/BoxEditor.php:518
+#, php-format
+msgid "Previewed inside: %s"
 msgstr ""
 
 #: src/Admin/SettingsPage.php:71 src/Admin/SettingsPage.php:122
@@ -230,15 +268,15 @@ msgstr ""
 msgid "Delete all boxes, settings and Peyvanda post data when the plugin is deleted"
 msgstr ""
 
-#: src/Admin/SettingsPage.php:196
+#: src/Admin/SettingsPage.php:202
 msgid "Peyvanda Pro is on the way"
 msgstr ""
 
-#: src/Admin/SettingsPage.php:197
+#: src/Admin/SettingsPage.php:203
 msgid "More designs and advanced features are coming as a separate add-on."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:199
+#: src/Admin/SettingsPage.php:205
 msgid "Dismiss"
 msgstr ""
 

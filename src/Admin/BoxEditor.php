@@ -138,21 +138,42 @@ final class BoxEditor {
 
 		wp_nonce_field( 'peyvanda_box_save_' . $post->ID, self::NONCE );
 		?>
-		<div class="pvd-editor">
-			<div class="pvd-editor__tabs" role="tablist">
+		<div class="pvd-editor" data-box-id="<?php echo esc_attr( (string) $post->ID ); ?>">
+			<div class="pvd-editor__main">
+				<div class="pvd-editor__tabs" role="tablist">
+					<?php $first = true; ?>
+					<?php foreach ( $tabs as $id => $tab ) : ?>
+						<button type="button" role="tab" class="pvd-editor__tab" id="pvd-tab-<?php echo esc_attr( $id ); ?>" aria-controls="pvd-panel-<?php echo esc_attr( $id ); ?>" aria-selected="<?php echo $first ? 'true' : 'false'; ?>"><?php echo esc_html( $tab['label'] ); ?></button>
+						<?php $first = false; ?>
+					<?php endforeach; ?>
+				</div>
 				<?php $first = true; ?>
 				<?php foreach ( $tabs as $id => $tab ) : ?>
-					<button type="button" role="tab" class="pvd-editor__tab" id="pvd-tab-<?php echo esc_attr( $id ); ?>" aria-controls="pvd-panel-<?php echo esc_attr( $id ); ?>" aria-selected="<?php echo $first ? 'true' : 'false'; ?>"><?php echo esc_html( $tab['label'] ); ?></button>
+					<div class="pvd-editor__panel" role="tabpanel" id="pvd-panel-<?php echo esc_attr( $id ); ?>" aria-labelledby="pvd-tab-<?php echo esc_attr( $id ); ?>"<?php echo $first ? '' : ' hidden'; ?>>
+						<?php call_user_func( $tab['callback'], $box ); ?>
+					</div>
 					<?php $first = false; ?>
 				<?php endforeach; ?>
 			</div>
-			<?php $first = true; ?>
-			<?php foreach ( $tabs as $id => $tab ) : ?>
-				<div class="pvd-editor__panel" role="tabpanel" id="pvd-panel-<?php echo esc_attr( $id ); ?>" aria-labelledby="pvd-tab-<?php echo esc_attr( $id ); ?>"<?php echo $first ? '' : ' hidden'; ?>>
-					<?php call_user_func( $tab['callback'], $box ); ?>
+
+			<aside class="pvd-preview" aria-label="<?php esc_attr_e( 'Live preview', 'peyvanda' ); ?>">
+				<div class="pvd-preview__bar">
+					<strong class="pvd-preview__title"><?php esc_html_e( 'Live preview', 'peyvanda' ); ?></strong>
+					<span class="pvd-preview__status" aria-live="polite"></span>
+					<span class="pvd-preview__devices" role="group" aria-label="<?php esc_attr_e( 'Preview size', 'peyvanda' ); ?>">
+						<button type="button" class="pvd-preview__device" data-width="760" aria-pressed="true"><?php esc_html_e( 'Desktop', 'peyvanda' ); ?></button>
+						<button type="button" class="pvd-preview__device" data-width="390" aria-pressed="false"><?php esc_html_e( 'Mobile', 'peyvanda' ); ?></button>
+					</span>
 				</div>
-				<?php $first = false; ?>
-			<?php endforeach; ?>
+				<div class="pvd-preview__viewport">
+					<div class="pvd-preview__page">
+						<span class="pvd-preview__line"></span><span class="pvd-preview__line"></span><span class="pvd-preview__line pvd-preview__line--short"></span>
+						<div class="pvd-preview__slot"></div>
+						<span class="pvd-preview__line"></span><span class="pvd-preview__line pvd-preview__line--short"></span>
+					</div>
+				</div>
+				<p class="pvd-preview__sample"></p>
+			</aside>
 		</div>
 		<?php
 	}
@@ -262,21 +283,17 @@ final class BoxEditor {
 		$current = $this->designs->get( (string) $box->get( 'design' ) );
 		$style   = (array) $box->get( 'style' );
 		?>
-		<table class="form-table" role="presentation">
-			<tr>
-				<th scope="row"><?php esc_html_e( 'Design', 'peyvanda' ); ?></th>
-				<td>
-					<fieldset class="pvd-editor__designs">
+		<h3 class="pvd-editor__heading" id="pvd-design-heading"><?php esc_html_e( 'Design', 'peyvanda' ); ?></h3>
+		<fieldset class="pvd-editor__designs" aria-labelledby="pvd-design-heading">
 						<?php foreach ( $this->designs->all() as $design ) : ?>
 							<label class="pvd-editor__design">
-								<input type="radio" name="pvd[design]" value="<?php echo esc_attr( $design->slug ); ?>" <?php checked( $current && $current->slug === $design->slug ); ?> />
-								<span><?php echo esc_html( $design->label ); ?></span>
+								<input type="radio" class="screen-reader-text" name="pvd[design]" value="<?php echo esc_attr( $design->slug ); ?>" <?php checked( $current && $current->slug === $design->slug ); ?> />
+								<span class="pvd-editor__thumb" data-design="<?php echo esc_attr( $design->slug ); ?>" aria-hidden="true"><span class="pvd-editor__thumb-inner"></span></span>
+								<span class="pvd-editor__design-name"><?php echo esc_html( $design->label ); ?></span>
 							</label>
 						<?php endforeach; ?>
 					</fieldset>
-				</td>
-			</tr>
-		</table>
+		<h3 class="pvd-editor__heading"><?php esc_html_e( 'Appearance', 'peyvanda' ); ?></h3>
 		<?php foreach ( $this->designs->all() as $design ) : ?>
 			<?php $values = $design->values( isset( $style[ $design->slug ] ) && is_array( $style[ $design->slug ] ) ? $style[ $design->slug ] : array() ); ?>
 			<table class="form-table pvd-editor__design-fields" role="presentation" data-design="<?php echo esc_attr( $design->slug ); ?>"<?php echo ( $current && $current->slug === $design->slug ) ? '' : ' hidden'; ?>>
@@ -487,6 +504,20 @@ final class BoxEditor {
 			return;
 		}
 		wp_enqueue_style( 'peyvanda-box-editor', PEYVANDA_URL . 'assets/admin/box-editor.css', array(), PEYVANDA_VERSION );
-		wp_enqueue_script( 'peyvanda-box-editor', PEYVANDA_URL . 'assets/admin/box-editor.js', array(), PEYVANDA_VERSION, true );
+		wp_enqueue_script( 'peyvanda-box-editor', PEYVANDA_URL . 'assets/admin/box-editor.js', array( 'wp-api-fetch' ), PEYVANDA_VERSION, true );
+		wp_localize_script(
+			'peyvanda-box-editor',
+			'peyvandaBoxEditor',
+			array(
+				'path' => '/peyvanda/v1/preview',
+				'i18n' => array(
+					'updating' => __( 'Updating…', 'peyvanda' ),
+					'empty'    => __( 'No items to show yet. Publish a few posts with shared tags or categories, or set a fallback in Peyvanda → Settings.', 'peyvanda' ),
+					'error'    => __( 'The preview could not be loaded.', 'peyvanda' ),
+					/* translators: %s: post title. */
+					'sample'   => __( 'Previewed inside: %s', 'peyvanda' ),
+				),
+			)
+		);
 	}
 }

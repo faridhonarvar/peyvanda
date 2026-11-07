@@ -186,7 +186,13 @@ final class SettingsPage {
 	 * @return void
 	 */
 	private function pro_card() {
-		if ( get_user_meta( get_current_user_id(), self::DISMISS_META, true ) || did_action( 'peyvanda_pro_loaded' ) ) {
+		/**
+		 * Whether to show the small notice card on the settings page. Add-ons can turn it off.
+		 *
+		 * @param bool $show Show the card.
+		 */
+		$show = (bool) apply_filters( 'peyvanda_show_notice_card', ! did_action( 'peyvanda_pro_loaded' ) );
+		if ( ! $show || get_user_meta( get_current_user_id(), self::DISMISS_META, true ) ) {
 			return;
 		}
 		$dismiss = wp_nonce_url( admin_url( 'admin-post.php?action=' . self::DISMISS_ACTION ), self::DISMISS_ACTION );
